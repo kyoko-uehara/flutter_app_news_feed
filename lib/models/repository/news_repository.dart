@@ -32,11 +32,11 @@ class NewsRepository {
           break;
       }
 
-      //if (response.isSuccessful){
-      if (response.statusCode >= 200 && response.statusCode < 300){
+      if (response.isSuccessful){
         final responseBody = response.body;
         print("responseBody: $responseBody");
-        result = News.fromJson(responseBody).article;
+        result = News.fromJson(responseBody).articles;
+        print("result(article): $result");
 
       }
       else{

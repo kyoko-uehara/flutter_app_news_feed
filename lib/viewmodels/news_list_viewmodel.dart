@@ -40,11 +40,11 @@ class NewsListViewModel extends ChangeNotifier{
       category: _category,
     );
 
-    //print("SearchType: $_searchType / keyword: $_keyword / category: $_category / articles: ${_articles[0].title}");
+    print("articles: $_articles");
+    //print("searchType: $_searchType / keyword: $_keyword / category: $_category / articles: ${_articles[0].title}");
 
     _isLoading = false;
     notifyListeners();
-
   }
 
   @override
@@ -52,4 +52,5 @@ class NewsListViewModel extends ChangeNotifier{
     _repository.dispose();
     super.dispose();
   }
+
 }

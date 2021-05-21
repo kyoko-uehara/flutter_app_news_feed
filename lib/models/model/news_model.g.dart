@@ -8,7 +8,7 @@ part of 'news_model.dart';
 
 News _$NewsFromJson(Map<String, dynamic> json) {
   return News(
-    (json['article'] as List)
+    articles: (json['articles'] as List)
         ?.map((e) =>
             e == null ? null : Article.fromJson(e as Map<String, dynamic>))
         ?.toList(),
@@ -16,7 +16,7 @@ News _$NewsFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$NewsToJson(News instance) => <String, dynamic>{
-      'article': instance.article,
+      'articles': instance.articles,
     };
 
 Article _$ArticleFromJson(Map<String, dynamic> json) {
@@ -25,7 +25,7 @@ Article _$ArticleFromJson(Map<String, dynamic> json) {
     description: json['description'] as String,
     url: json['url'] as String,
     urlToImage: json['urlToImage'] as String,
-    publishedDate: json['publishedAt'] as String,
+    publishDate: json['publishedAt'] as String,
     content: json['content'] as String,
   );
 }
@@ -35,6 +35,6 @@ Map<String, dynamic> _$ArticleToJson(Article instance) => <String, dynamic>{
       'description': instance.description,
       'url': instance.url,
       'urlToImage': instance.urlToImage,
-      'publishedAt': instance.publishedDate,
+      'publishedAt': instance.publishDate,
       'content': instance.content,
     };
