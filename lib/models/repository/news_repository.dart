@@ -17,8 +17,6 @@ class NewsRepository {
     List<Article> result = List<Article>();
     Response response;
 
-    print("[NewsRepository] SearchType: $searchType / keyword: $keyword / category: ${category.nameEn}");
-
     try {
       switch (searchType) {
         case SearchType.HEAD_LINE:
