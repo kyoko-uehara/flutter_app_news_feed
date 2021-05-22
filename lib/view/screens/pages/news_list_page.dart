@@ -5,6 +5,7 @@ import 'package:news_feed/data/search_type.dart';
 import 'package:news_feed/view/components/article_tile.dart';
 import 'package:news_feed/view/components/category_chips.dart';
 import 'package:news_feed/view/components/search_bar.dart';
+import 'package:news_feed/view/screens/news_web_page_screen.dart';
 import 'package:news_feed/viewmodels/news_list_viewmodel.dart';
 import 'package:provider/provider.dart';
 
@@ -94,9 +95,13 @@ class NewsListPage extends StatelessWidget {
     print("NewsListpage.getCategoryNews /category: ${category.nameJp}");
   }
 
-  //TODO
   _openArticleWebPage(article, BuildContext context) {
     print("_openArticleWebPage: ${article.url}");
-
+    Navigator.of(context).push(
+      MaterialPageRoute(
+          builder: (context) =>NewsWebPageScreen(
+            article: article,
+          ))
+    );
   }
 }
