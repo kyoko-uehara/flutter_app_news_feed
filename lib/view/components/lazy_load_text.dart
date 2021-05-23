@@ -11,7 +11,7 @@ class LazyLoadText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme.title;
+    final textTheme = Theme.of(context).textTheme.subtitle1;
 
     return Opacity(
       opacity: pageVisibility.visibleFraction,

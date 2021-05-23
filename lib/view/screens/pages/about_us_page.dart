@@ -11,7 +11,10 @@ class _AboutUsPageState extends State<AboutUsPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(),
+        body: Container(
+          child: Center(
+              child: Text("News Feed App",)),
+        ),
       ),
     );
   }
