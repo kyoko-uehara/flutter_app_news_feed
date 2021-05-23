@@ -4,6 +4,8 @@ import 'package:news_feed/data/category_info.dart';
 import 'package:news_feed/data/search_type.dart';
 import 'package:news_feed/models/model/news_model.dart';
 import 'package:news_feed/models/network/api_service.dart';
+import 'package:news_feed/main.dart';
+import 'package:news_feed/util/extensions.dart';
 
 class NewsRepository {
 
@@ -33,7 +35,7 @@ class NewsRepository {
       if (response.isSuccessful){
         final responseBody = response.body;
         print("responseBody: $responseBody");
-        result = News.fromJson(responseBody).articles;
+        result = await insertAndReadFromDB(responseBody);
         print("result(article): $result");
 
       }
@@ -52,5 +54,18 @@ class NewsRepository {
 
   void dispose(){
     _apiService.dispose();
+  }
+
+  Future<List<Article>> insertAndReadFromDB(responseBody) async{
+    final dao = myDatabase.newsDao;
+    final articles = News.fromJson(responseBody).articles;
+
+    // Webから取得した記事（Dartのモデルクラス：Article）を
+    // DBのテーブルクラス（Articles）に変換してDBへ登録 ＆ DBから取得
+    final articleRecords = await dao.insertAndReadNewsFromDB(
+        articles.toArticleRecords(articles));
+
+    // DBから取得したデータをデータモデルクラスに再変化して返す
+    return articleRecords.toArticles(articleRecords);
   }
 }
